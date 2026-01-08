@@ -39,7 +39,6 @@ where
     where
         [(); D2 + 1]:,
         [(); D1 + D2 + 1]:,
-        [(); D1 + D2]:,
     {
         let mut result = [T::default(); D1 + D2 + 1];
         for i in 0..=D1 {
