@@ -32,7 +32,7 @@ fn check_split() {
 
     let array = [5, 6, 42, 24];
     // infer split from usage in assertions
-    let (first, rest)= split(array);
+    let (first, rest) = split(array);
     assert_eq!(first, [5]);
     assert_eq!(rest, [6, 42, 24]);
 }
