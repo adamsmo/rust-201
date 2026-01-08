@@ -63,4 +63,5 @@ fn test_polynomial_multiplication() {
 
     assert_eq!(product.degree(), 2);
     assert_eq!(product.num_coefficients(), 3);
+    assert_eq!(product.coefficients, [3, 10, 8]);
 }
