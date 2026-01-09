@@ -1,0 +1,10 @@
+[package]
+name = "async_closure"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.92.0"
+
+[dependencies]
+tokio = { version = "1.49.0", features = ["time", "rt", "rt-multi-thread", "macros", "sync"] }
+reqwest = "0.13.1"
+anyhow = "1.0.100"
