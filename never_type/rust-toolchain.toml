@@ -1,0 +1,3 @@
+[toolchain]
+# use nightly to test new features
+channel = "nightly"
