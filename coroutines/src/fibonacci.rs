@@ -8,19 +8,19 @@ pub fn fibonacci_coroutine(count: usize) -> impl Coroutine<Yield = u64, Return =
         let mut b: u64 = 1;
 
         for _ in 0..count {
-            yield a;
-            let next = a + b;
+            yield a; // <- this is suspension point that is handled with Yielded enum value
+            let next = a + b; // <- executions resumes here after calling resume(())
             a = b;
             b = next;
         }
 
-        "Fibonacci sequence complete"
+        "Fibonacci sequence complete" // <- this is return instruction, it is handled with Complete enum value
     }
 }
 
 #[test]
 fn demo() {
-    let mut coro_fib = fibonacci_coroutine(10);
+    let mut coro_fib = fibonacci_coroutine(5);
     let mut coro_result = Vec::new();
 
     loop {
@@ -34,4 +34,14 @@ fn demo() {
             }
         }
     }
+
+    // internal coroutine state at each resume() call + what is returned
+    // resume()  resume()  resume()  resume()  resume()  resume()
+    //    |         |         |         |         |         |
+    // --------  --------  --------  --------  --------  --------
+    // | a=0  |  | a=1  |  | a=1  |  | a=2  |  | a=3  |  | END  |
+    // | b=1  |  | b=1  |  | b=2  |  | b=3  |  | b=5  |  |      |
+    // --------  --------  --------  --------  --------  --------
+    //    |         |         |         |         |         |
+    // Yield(0)  Yield(1)  Yield(1)  Yield(2)  Yield(3) Complete("Fib...")
 }
