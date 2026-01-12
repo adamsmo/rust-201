@@ -1,4 +1,7 @@
-use std::ops::{Coroutine, CoroutineState};
+use std::ops::Coroutine;
+#[cfg(test)]
+use std::ops::CoroutineState;
+#[cfg(test)]
 use std::pin::Pin;
 
 pub fn fibonacci_coroutine(count: usize) -> impl Coroutine<Yield = u64, Return = &'static str> {

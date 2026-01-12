@@ -1,4 +1,7 @@
-use std::ops::{Coroutine, CoroutineState};
+use std::ops::Coroutine;
+#[cfg(test)]
+use std::ops::CoroutineState;
+#[cfg(test)]
 use std::pin::Pin;
 
 /// those coroutines never return, as they have infinite loops in them,
